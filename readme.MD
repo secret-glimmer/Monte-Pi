@@ -22,7 +22,14 @@ git clone https://github.com/secret-glimmer/Monte-Pi.git
 cd Monte-Pi
 ```
 
-2. Run the containers:
+2. Fill in the .env files in the backend and frontend folders with the appropriate values.
+
+```bash
+cp backend/.env.example backend/.env
+cp frontend/.env.example frontend/.env
+```
+
+3. Run the containers:
 
 ```bash
 docker compose up -d
