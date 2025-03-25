@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  pi-backend:
+    build: ./backend  
+    image: pi-backend:latest
+    container_name: pi-backend
+    ports:
+      - '3000:3000'
+    env_file:
+    - ./backend/.env
+  pi-web:
+    build: ./frontend  
+    image: pi-web:latest
+    container_name: pi-web
+    ports:
+      - '4173:4173'
+    env_file:
+    - ./frontend/.env
+    depends_on:
+      - pi-backend 
+    restart: on-failure
