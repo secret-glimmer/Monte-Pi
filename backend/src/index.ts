@@ -1,5 +1,7 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
+import { validate } from "./validations/zod";
+import { generatePointsSchema } from "./validations/points";
 import { PointsController } from "./controllers/points";
 import { errorMiddleware } from "./middlewares/error.middleware";
 
@@ -13,7 +15,11 @@ app.get("/health", (_req: Request, res: Response) => {
   res.json({ message: "OK" });
 });
 
-app.post("/points", PointsController.generatePoints);
+app.post(
+  "/points",
+  validate(generatePointsSchema),
+  PointsController.generatePoints
+);
 
 app.use(errorMiddleware);
 
